@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw
 from PIL import Image, ImageOps
 import numpy as np
 
-# Braille patterns for each letter in a 2x3 grid
+# Braille patterns for each letter in a 3x2 grid
 braille_dict = {
     'A': [1,0,0,0,0,0],
     'B': [1,0,1,0,0,0],
@@ -70,40 +70,6 @@ num_columns = 20
 num_dots = num_rows * num_columns
 dot_states = [0] * num_dots  # Initialize all dots as lowered
 
-# Function to raise a dot at given position
-def raise_dot(dot_position):
-    dot_states[dot_position] = 1
-
-# Function to lower a dot at given position
-def lower_dot(dot_position):
-    dot_states[dot_position] = 0
-
-# Function to render the tactile display
-def render_display():
-    dot_size = 20
-    image = Image.new('RGB', (num_columns * dot_size, num_rows * dot_size), color='white')
-    draw = ImageDraw.Draw(image)
-
-    for y in range(num_rows):
-        for x in range(num_columns):
-            dot_index = y * num_columns + x
-            dot_state = dot_states[dot_index]
-            color = 'black' if dot_state == 1 else 'white'
-            draw.rectangle([x * dot_size, y * dot_size, (x + 1) * dot_size, (y + 1) * dot_size], fill=color)
-
-    image.show()
-
-# Function to raise dots at given positions
-def raise_dots(dot_positions):
-    for pos in dot_positions:
-        raise_dot(pos)
-
-# Function to lower dots at given positions
-def lower_dots(dot_positions):
-    for pos in dot_positions:
-        lower_dot(pos)
-
-# Your code (until the `while` loop) remains the same.
 def render_braille_string(user_input):
     rows = [''] * 3  # Initialize rows for 3 Braille rows
     display = []  # Initialize the display grid
@@ -111,7 +77,8 @@ def render_braille_string(user_input):
     columns = 0
     for char in user_input:
         if row_count >= num_rows:
-            break  # Break if the text exceeds the display height
+            break 
+            
         if char.upper() in braille_dict:
             pattern = braille_dict[char.upper()]
             for i in range(3):
@@ -121,25 +88,34 @@ def render_braille_string(user_input):
                     else:
                         rows[i] += '◌ '  # Use '◌ ' for empty spaces
                     columns += 2  # Increment by 2 for each character printed
+                    
             if len(rows[0]) > num_columns * 2:  # Update the condition for columns
                 display.extend(rows)  # Add the rows to the display grid
                 rows = [''] * 3  # Reset rows for the next set of characters
-                row_count += 3  # Move to the next row
+                row_count += 3 
+                
     if any(rows):
         display.extend(rows)  # Add the last set of characters if any remain
-    # Ensure the display doesn't exceed the defined grid size
+        
+    # To ensure the display doesn't exceed the defined grid size
     display = display[:num_rows]
-    # Fill any remaining space in the rows with '◌ '
+    
+    # To fill any remaining space in the rows with '◌ '
     for i in range(len(display)):
         while len(display[i]) < num_columns * 2:  # Update to match the number of columns
             display[i] += '◌ '
+            
     while len(display) < num_rows:  # Ensure all 10 rows exist
         display.append('◌ ' * num_columns * 2)  # Add '◌ ' for empty rows
+        
     # Print the display grid
     for row in display:
         print(row[:num_columns * 2])  # Trim to fit within the defined columns
 
-user_input = input("Enter a string: ")
+user_input = input("Enter a string: ") #Taking inputs from the user
+
+#The numbers are always displayed with a # before them for people to identify them as numbers
+#Therefore, # is being prefixed to all the numbers before processing
 modified_string = ''
 for char in user_input:
     if char.isdigit():
@@ -151,6 +127,9 @@ if len(modified_string) < 30:
   render_braille_string(modified_string)
 else:
   print("Enter a string less than length 30")
+
+
+
 
 """IMAGE ANALYSIS"""
 
@@ -167,7 +146,7 @@ image_gray = ImageOps.grayscale(image)
 threshold = 100  # Adjust this threshold value if needed
 binary_image = image_gray.point(lambda p: 0 if p < threshold else 255)
 
-# Find bounding box of the black outlines
+# Find the bounding box of the black outlines
 bbox = binary_image.getbbox()
 
 # Crop the image to the bounding box area
@@ -195,9 +174,7 @@ else:
 # Resize the image while maintaining aspect ratio and fitting within 20 columns and 10 rows
 resized_image = cropped_image.resize((resized_width, resized_height))
 
-# Display the resized image or perform further processing...
-# You can use this resized_image for creating a tactile representation as shown in previous examples.
-
+#Improve the contrast so that the colours are more defined
 def contrast_stretching(image_array):
     lower_percentile = 5  # Adjust these percentiles for more aggressive contrast enhancement
     upper_percentile = 95
