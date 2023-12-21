@@ -10,3 +10,5 @@ The tool's functionality is also expanded to include images. Images uploaded by 
 Demystifying access to knowledge and experiences is central to the project's philosophy. Through an immersive approach to written content and visual imagery, it seeks to remove barriers for people with visual impairments. By giving conventional text and images a tactile quality, it also improves the experience for all users and encourages a closer relationship with the content than is possible with just visual perception.
 
 TouchScript exemplifies the use of technology to promote social inclusion and a variety of ways to engage and experience content. Making information more interactive and accessible for a larger audience, its features promote inclusivity.
+
+PharmaBraille - https://www.pharmabraille.com/braille-codes/unified-english-braille-ueb-code/
