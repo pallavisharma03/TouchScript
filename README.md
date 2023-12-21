@@ -12,3 +12,5 @@ Demystifying access to knowledge and experiences is central to the project's phi
 TouchScript exemplifies the use of technology to promote social inclusion and a variety of ways to engage and experience content. Making information more interactive and accessible for a larger audience, its features promote inclusivity.
 
 PharmaBraille - https://www.pharmabraille.com/braille-codes/unified-english-braille-ueb-code/
+
+
