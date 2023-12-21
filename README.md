@@ -15,5 +15,5 @@ PharmaBraille - https://www.pharmabraille.com/braille-codes/unified-english-brai
 
 # Results
 TouchScript tool has been deployed for the user using the Tkinter library in Python. This is a very simple GUI form and was created to avoid further complications in the code to just serve the purpose of a prototype.
-
+<img width="359" alt="Screenshot 2023-12-20 at 10 20 13 PM" src="https://github.com/pallavisharma03/TouchScript/assets/137420837/5b31c3f2-ba20-46f9-951b-8c0915a80329">
 
