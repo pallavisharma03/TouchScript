@@ -13,4 +13,7 @@ TouchScript exemplifies the use of technology to promote social inclusion and a 
 
 PharmaBraille - https://www.pharmabraille.com/braille-codes/unified-english-braille-ueb-code/
 
+# Results
+TouchScript tool has been deployed for the user using the Tkinter library in Python. This is a very simple GUI form and was created to avoid further complications in the code to just serve the purpose of a prototype.
+
 
